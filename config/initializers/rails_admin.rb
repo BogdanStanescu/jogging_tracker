@@ -1,4 +1,8 @@
 RailsAdmin.config do |config|
+  require "nested_form/engine" 
+  require "nested_form/builder_mixin"
+  
+  
   # config.authorize_with do
   #   redirect_to main_app.root_path, notice: 'You are not authorized to access this page' unless current_user.admin?
   # end
