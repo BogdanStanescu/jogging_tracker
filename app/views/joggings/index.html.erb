@@ -1,0 +1,62 @@
+<style>
+  #chart-2{
+    display:none;
+  }
+  #chart-3{
+    display:none;
+  }
+  #chart-4{
+    display:none;
+  }
+  #chart-5{
+    display:none;
+  }
+  #chart-6{
+    display:none;
+  }
+  #chart-7{
+    display:none;
+  }  
+</style>
+
+<br />
+<table class="table table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>Distance</th>
+      <th>Time</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @joggings.each do |jogging| %>
+    <% if jogging.user == current_user %>
+      <tr id="jogging-<%=jogging.id%>">
+        <td><%= jogging.distance %> meters </td>
+        <td><%= jogging.time %> seconds</td>
+        <td><%= jogging.date %></td>
+        <td><%= link_to 'Show', jogging %></td>
+        <td><%= link_to 'Edit', edit_jogging_path(jogging) %></td>
+        <td><%= link_to 'Delete', jogging, method: :delete, data: { confirm: 'Are you sure?', remote: true } %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Result', new_jogging_path, class:"btn btn-outline-dark" %>
+
+<br />
+
+<div class="text-center">
+  <h1>Last 7 Days Data</h1>
+</div>
+<%= render 'chart_data' %>
+
+
+
+

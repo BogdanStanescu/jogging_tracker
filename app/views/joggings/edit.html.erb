@@ -1,0 +1,9 @@
+<br />
+<h1>Edit Jogging</h1>
+
+<%= render 'form', jogging: @jogging %>
+
+<br />
+<%= link_to 'Show', @jogging, class:"btn btn-outline-dark" %>
+<%= link_to 'Delete', @jogging, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-dark" %>
+<%= link_to 'Back', joggings_path, class:"btn btn-outline-dark" %>

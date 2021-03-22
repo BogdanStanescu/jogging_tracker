@@ -1,0 +1,40 @@
+<%= form_with(model: jogging) do |form| %>
+<% if jogging.errors.any? %>
+<div id="error_explanation">
+   <h2><%= pluralize(jogging.errors.count, "error") %> prohibited this jogging from being saved:</h2>
+   <ul>
+      <% jogging.errors.each do |error| %>
+      <li><%= error.full_message %></li>
+      <% end %>
+   </ul>
+</div>
+<% end %>
+<br/>
+<div class="field form-group">
+   <%= form.text_field :first_name, class:"form-control", placeholder:"First Name" %>
+</div>
+<br/>
+<div class="field form-group">
+   <%= form.text_field :last_name, class:"form-control", placeholder:"Last Name" %>
+</div>
+<br/>
+<div class="field form-group">
+   <%= form.number_field :distance, class:"form-control", placeholder:"Distance", required: true %>
+</div>
+<br/>
+<div class="field form-group">
+   <%= form.number_field :time, class:"form-control", placeholder:"Time", required: true %>
+</div>
+<br />
+<div class="field form-group">
+   <%= form.date_field :date, class:"form-control", placeholder:"Date", required: true %>
+</div>
+<br />
+<div class="field form-group">
+   <%= form.number_field :user_id, id: :jogging_user_id, class:"form-control", value:current_user.id, type: :hidden %>
+</div>
+<br />
+<div class="actions">
+   <%= form.submit class:"btn btn-primary btn-lg btn-block" %>
+</div>
+<% end %>

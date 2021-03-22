@@ -1,0 +1,3 @@
+<% data = {}%>
+<% current_user.joggings.where("date(date) >= ? and date(date) <= ?",(Date.current-7).strftime("%Y-%m-%d"), Date.current.strftime("%Y-%m-%d")).map{ |jogging| data[jogging.date.strftime("%d / %m")] = jogging.distance } %>
+<%= column_chart data,:library => {hAxis: {title: "X-label"}, vAxis: {title: "Y-label"}, title: "Graph title label"} %>
