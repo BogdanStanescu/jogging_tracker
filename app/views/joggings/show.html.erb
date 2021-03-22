@@ -1,32 +1,21 @@
-
-
 <br />
 <div class="jumbotron">
-      <h1 class="display-4">
+    <h1 class="display-4">
         <%= @jogging.first_name %>
         <%= @jogging.last_name %>
     </h1>
-  <hr class="my-4">
-  <p class="lead">
-    <strong> Distance: <b><%= @jogging.distance %> meters</b> </strong> &nbsp; •  
-    &nbsp; <strong> Time: <b><%= @jogging.time %> seconds</b> </strong> &nbsp; •  
-    &nbsp; <strong> Date: <b><%= @jogging.date %></b> </strong> &nbsp; • 
-    &nbsp; <strong> Average speed: <b><%= @jogging.distance / (@jogging.time.to_i == 0 ? 1 : @jogging.time.to_i) %> m/s</b></strong>
-  </p>
-  <br />
-  <%= link_to 'Edit', edit_jogging_path(@jogging), class:"btn btn-outline-dark" %> 
-  <%= link_to 'Back', joggings_path, class:"btn btn-outline-dark" %> <br />
-  <br />
-  <% data = {}%>
-  <% current_user.joggings.where("date(date) >= ? and date(date) <= ?",(Date.current-7).strftime("%Y-%m-%d"), Date.current.strftime("%Y-%m-%d")).map{ |jogging| data[jogging.date.strftime("%d / %m")] = (jogging.distance.to_i / (jogging.time.to_i == 0 ? 1 : jogging.time.to_i )) } %>
-  <%= column_chart data,:library => {hAxis: {title: "X-label"}, vAxis: {title: "Y-label"}, title: "Graph title label"} %>
+    <hr class="my-4">
+    <p class="lead">
+        <strong> Distance: <b><%= @jogging.distance %> meters</b> </strong> &nbsp; •
+        &nbsp; <strong> Time: <b><%= @jogging.time %> seconds</b> </strong> &nbsp; •
+        &nbsp; <strong> Date: <b><%= @jogging.date %></b> </strong> &nbsp; •
+        &nbsp; <strong> Average speed: <b><%= @jogging.distance / (@jogging.time.to_i == 0 ? 1 : @jogging.time.to_i) %> m/s</b></strong>
+    </p>
+    <br />
+    <%= link_to 'Edit', edit_jogging_path(@jogging), class:"btn btn-outline-dark" %>
+    <%= link_to 'Back', joggings_path, class:"btn btn-outline-dark" %> <br />
+    <br />
+    <% data = {}%>
+    <% current_user.joggings.where("date(date) >= ? and date(date) <= ?",(Date.current-7).strftime("%Y-%m-%d"), Date.current.strftime("%Y-%m-%d")).map{ |jogging| data[jogging.date.strftime("%d / %m")] = (jogging.distance.to_i / (jogging.time.to_i == 0 ? 1 : jogging.time.to_i )) } %>
+    <%= line_chart data,:library => {hAxis: {title: "X-label"}, vAxis: {title: "Y-label"}, title: "Graph title label"} %>
 </div>
-
-
-
-
-
-
-
-
-
